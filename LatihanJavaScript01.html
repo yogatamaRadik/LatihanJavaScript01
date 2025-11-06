@@ -19,9 +19,55 @@
             Latihan Kalkulator Sederhana - JavaScript 01
         </h1>
         <p>
-            Halaman untuk Latihan Javascript 01 = Kalkulator sederhana (+ - x :), memanfaatkan prompt dan alert pada browser.
+            Halaman untuk Latihan Javascript 01 = Kalkulator sederhana (+ - x :), memanfaatkan prompt dan alert pada
+            browser.
         </p>
     </nav>
+    <script>
+        function askNumber(message) {
+            const input = prompt(message);
+            if (input == null) return null;
+            const normalized = input.trim().replace(',', '.');
+            const num = Number(normalized);
+            if (Number.isFinite(num)) return num;
+            return askNumber("Input tidak valid. " + message);
+        }
+
+        function askOperator() {
+            const op = prompt("Pilih Operator: + - * / (Pilih salah satu!)");
+            if (op == null) return null;
+            const trimmed = op.trim();
+            if (trimmed === "+" || trimmed === "-" || trimmed === "*" || trimmed === "/") return trimmed;
+            return askOperator();
+        }
+
+        function fungsiKalkulator(){
+            alert("Selamat datang di Kalkulator Sederhana. \n Klik 'Cancel' untuk keluar");
+            while(true){
+                const a = askNumber("Masukkan angka pertama: ");
+                if (a === null) break;
+
+                const operator = askOperator();
+                if (operator === null) break;
+
+                const b = askNumber("Masukkan angka kedua: ");
+                if (b === null) break;
+
+                let result;
+                if (operator === "+") result = a + b;
+                else if (operator === "-") result = a - b;
+                else if (operator === "*") result = a * b;
+                else if (operator === "/") {
+                    if (b === 0) {
+                        alert("Error: Pembagian dengan nol tidak diperbolehkan!");
+                        if (!confirm("Apakah anda ingin mencoba kembali?")) break;
+                        else continue;
+                    }
+                    result = a / b;
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
