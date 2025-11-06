@@ -2,21 +2,30 @@
 <html lang="id">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Kalkulator Prompt sederhana</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Latihan JavaScript01 - Kalkulator Sederhana</title>
 </head>
 
 <body>
+    <div>
+        <h1 class="H1">
+            Latihan JavaScript01 - Kalkulator Sederhana
+        </h1>
+        <p>
+            Latihan membuat kalkulator sederhana + - * / , menggunakan javascript dengan prompt dan alert.
+        </p>
+    </div>
+
     <script>
-        // Fungsi bantu untuk membaca angka dari prompt; mengembalikan null jika user batal
         function askNumber(message) {
             const input = prompt(message);
-            if (input === null) return null; // user cancel
-            // Hapus spasi, terima koma atau titik sebagai pemisah desimal
+            if (input === null) return null; 
+
             const normalized = input.trim().replace(',', '.');
             const num = Number(normalized);
             if (Number.isFinite(num)) return num;
-            // jika bukan angka, ulangi sampai valid atau user cancel
+
             return askNumber("Input tidak valid. " + message);
         }
 
@@ -47,23 +56,19 @@
                 else if (operator === "/") {
                     if (b === 0) {
                         alert("Error: Pembagian dengan nol tidak diperbolehkan.");
-                        // tanya mau ulang atau batal
+
                         if (!confirm("Ingin mencoba kembali?")) break;
                         else continue;
                     }
                     result = a / b;
                 }
 
-                // Tampilkan hasil (tampilkan angka dengan maksimal 12 digit precision sederhana)
                 alert(`${a} ${operator} ${b} = ${Number.isFinite(result) ? parseFloat(result.toPrecision(12)) : result}`);
 
-                // Tanyakan apakah mau menghitung lagi
                 if (!confirm("Hitung lagi? (OK = ya, Cancel = tidak)")) break;
             }
             alert("Terima kasih — kalkulator ditutup.");
         }
-
-        // Jalankan
         kalkulator();
     </script>
 </body>
